@@ -1,36 +1,162 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Quizo - Quiz Management System
 
-## Getting Started
+Quizo is a quiz management system built using Next.js (App Router), ShadCN UI, and MySQL with Prisma ORM. This guide provides setup instructions to run the project locally.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Project Setup
+
+### 1. Clone the Repository
+
+```sh
+git clone https://github.com/your-repo/quizo.git
+cd quizo
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install Dependencies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sh
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3. Set Up Environment Variables
 
-## Learn More
+Create a `.env` file in the root directory and add your database connection string:
 
-To learn more about Next.js, take a look at the following resources:
+```sh
+DATABASE_URL="mysql://USER:PASSWORD@HOST:PORT/DATABASE"
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Replace `USER`, `PASSWORD`, `HOST`, `PORT`, and `DATABASE` with your actual database credentials.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 4. Initialize the Database
 
-## Deploy on Vercel
+Run Prisma migrations to set up the database schema:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```sh
+npx prisma migrate dev --name init
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 5. Seed the Database
+
+Since the login part is static so you have to  `Create` a user in the `users` table with static credentials:
+
+```sql
+INSERT INTO users (id, username, password) VALUES ('priyam', 'priyam', 'priyam');
+```
+
+### 6. Start the Development Server
+
+```sh
+npm run dev
+```
+
+The app will be available at `http://localhost:3000`.
+
+---
+
+## 🔗 API Documentation
+
+### 1️⃣ **User Authentication** (Static Credentials)
+
+- **Login**
+  - Endpoint: `POST /api/login`
+  - Request Body:
+    ```json
+    {
+      "username": "priyam",
+      "password": "priyam"
+    }
+    ```
+  - Response:
+    ```json
+    {
+      "message": "Login successful"
+    }
+    ```
+
+### 2️⃣ **Quizzes API**
+
+- **Get All Quizzes**
+
+  - Endpoint: `GET /api/quizzes`
+  - Response:
+    ```json
+    [
+      {
+        "id": "1",
+        "title": "Sample Quiz",
+        "description": "This is a sample quiz."
+      }
+    ]
+    ```
+
+- **Get a Single Quiz**
+
+  - Endpoint: `GET /api/quizzes/{id}`
+  - Response:
+    ```json
+    {
+      "id": "1",
+      "title": "Sample Quiz",
+      "description": "This is a sample quiz."
+    }
+    ```
+
+- **Create a Quiz**
+
+  - Endpoint: `POST /api/quizzes`
+  - Request Body:
+    ```json
+    {
+      "title": "New Quiz",
+      "description": "Quiz description"
+    }
+    ```
+  - Response:
+    ```json
+    {
+      "message": "Quiz created successfully",
+      "quiz": {
+        "id": "2",
+        "title": "New Quiz",
+        "description": "Quiz description"
+      }
+    }
+    ```
+
+- **Update a Quiz**
+
+  - Endpoint: `PUT /api/quizzes`
+  - Request Body:
+    ```json
+    {
+      "id": "2",
+      "title": "Updated Quiz",
+      "description": "Updated description"
+    }
+    ```
+  - Response:
+    ```json
+    {
+      "message": "Quiz updated successfully"
+    }
+    ```
+
+- **Delete a Quiz**
+
+  - Endpoint: `DELETE /api/quizzes/{id}`
+  - Response:
+    ```json
+    {
+      "message": "Quiz deleted successfully"
+    }
+    ```
+
+---
+
+## ✅ Conclusion
+
+You have successfully set up and run the Quiz Management System locally. If you encounter any issues, check your database connection and ensure Prisma migrations are applied correctly.
+
+Happy Coding! 🚀
