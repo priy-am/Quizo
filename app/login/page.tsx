@@ -22,7 +22,6 @@ interface LoginData {
 }
 
 export default function Login() {
-    const router = useRouter();
 
     return (
         <div className="min-h-screen grid lg:grid-cols-2">
