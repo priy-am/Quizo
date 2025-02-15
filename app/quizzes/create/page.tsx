@@ -105,6 +105,7 @@ export default function CreateQuiz() {
                                         </FormItem>
                                     )}
                                 />
+                                {apiError && <p className="text-red-500">{apiError}</p>}
                                 <Button type="submit" disabled={isLoading}>
                                     {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                                     Create Quiz

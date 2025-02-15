@@ -32,7 +32,7 @@ export default function Login() {
                     <CardTitle className="text-2xl font-bold">Welcome to Quizo</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <AuthForm router={router} /> {/* Authform function is below  */}
+                    <AuthForm /> {/* Authform function is below  */}
                 </CardContent>
             </Card>
         </div>
@@ -50,7 +50,8 @@ export default function Login() {
 }
 
 
-function AuthForm({ router }: { router: any }) { 
+function AuthForm() {
+    const router = useRouter(); 
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
