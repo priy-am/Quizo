@@ -4,9 +4,9 @@ import { NextRequest, NextResponse } from "next/server";
 // Reuse Prisma client instance
 const prisma = new PrismaClient();
 
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(req: NextRequest, context: { params: { id: string } }) {
     try {
-        const { id } = params;
+        const { id } = context.params; 
 
         if (!id) {
             return NextResponse.json({ error: "Quiz ID is required" }, { status: 400 });
@@ -33,9 +33,9 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
     }
 }
 
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(req: NextRequest, context: { params: { id: string } }) {
     try {
-        const { id } = params;
+        const { id } = context.params; 
 
         if (!id) {
             return NextResponse.json({ error: "Quiz ID is required" }, { status: 400 });
