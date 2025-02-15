@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 // import type { Metadata } from "next";
-import { useForm, useFieldArray } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
@@ -10,7 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Loader2, ArrowLeft, PlusCircle, Trash2, Plus, Minus } from "lucide-react";
+import { Loader2, ArrowLeft} from "lucide-react";
 import Header from "@/components/ui/Header";
 
 const quizSchema = z.object({
