@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertCircle } from "lucide-react";
+import Link from "next/link";
 
 export default function NotFound() {
   return (
@@ -12,7 +13,7 @@ export default function NotFound() {
           </div>
 
           <p className="mt-4 text-sm text-gray-600">
-            <span> Go back to the</span> <a href="/" className="text-primary">homepage</a>.
+            <Link href="/">Go back home</Link>
           </p>
         </CardContent>
       </Card>

@@ -1,11 +1,11 @@
-import { NextRequest, NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
+import { NextResponse } from "next/server";
+// import { PrismaClient } from "@prisma/client";
+// import bcrypt from "bcryptjs";
+// import jwt from "jsonwebtoken";
 import * as dotenv from 'dotenv';
 dotenv.config();
 
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
 
 
 // static login credential as per given assignement

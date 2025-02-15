@@ -16,6 +16,11 @@ const schema = z.object({
     password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
+interface LoginData {
+    username: string;
+    password: string;
+}
+
 export default function Login() {
     const router = useRouter();
 
@@ -58,7 +63,7 @@ function AuthForm({ router }: { router: any }) {
         },
     });
 
-    const handleSubmit = async (data: any) => {
+    const handleSubmit = async (data: LoginData) => {
         setIsLoading(true);
         setErrorMessage("");
         try {
