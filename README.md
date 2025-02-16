@@ -53,6 +53,8 @@ npm run dev
 
 The app will be available at `http://localhost:3000`.
 
+Login with username:- `priyam` Password:- `priyam`
+
 ---
 
 ## 🔗 API Documentation
