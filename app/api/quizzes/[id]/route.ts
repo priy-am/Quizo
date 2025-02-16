@@ -3,11 +3,12 @@ import { NextRequest, NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
-interface pramstype { id: string; }
 
-export async function DELETE(req: NextRequest, { params }: { params: pramstype }) {
+export async function DELETE(req: NextRequest, context: { params: Promise<{ id: string }> }) {
   try {
-    const { id } = await params;
+    const { id } = await context.params;
+    console.log("Quiz ID:", id);
+    
 
     if (!id) {
       return NextResponse.json({ error: "Quiz ID is required" }, { status: 400 });
@@ -32,13 +33,10 @@ export async function DELETE(req: NextRequest, { params }: { params: pramstype }
   }
 }
 
-export async function GET(req: NextRequest, { params }: { params: pramstype }) {
+export async function GET(req: NextRequest, context: { params: Promise<{ id: string }> }) {
   try {
-    const { id } = await params;
-
-    if (!id) {
-      return NextResponse.json({ error: "Quiz ID is required" }, { status: 400 });
-    }
+    const { id } = await context.params;
+    console.log("Quiz ID:", id);
 
     const quiz = await prisma.quiz.findUnique({
       where: { id },
